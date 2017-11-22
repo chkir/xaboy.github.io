@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>NodeJs学习笔记 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="NodeJs,学习笔记">
+    <meta name="description" content="NodeJs基础学习笔记   一. 基础1. require 用于在当前模块中加载和使用别的模块，传入一个模块名，返回一个模块导出对象。模块名可使用相对路径（以./开头），或者是绝对路径（以/或C:之类的盘符开头）。另外，模块名中的.js扩展名可以省略。  2. exports 用于导出模块公有方法和属性。别的模块通过">
+<meta name="keywords" content="NodeJs,学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NodeJs学习笔记">
+<meta property="og:url" content="http://yoursite.com/2017/11/22/nodejs-learn-node/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="NodeJs基础学习笔记   一. 基础1. require 用于在当前模块中加载和使用别的模块，传入一个模块名，返回一个模块导出对象。模块名可使用相对路径（以./开头），或者是绝对路径（以/或C:之类的盘符开头）。另外，模块名中的.js扩展名可以省略。  2. exports 用于导出模块公有方法和属性。别的模块通过require函数使用当前模块时得到的就是当前模块的exports对象  3.">
+<meta property="og:updated_time" content="2017-11-22T05:38:34.213Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NodeJs学习笔记">
+<meta name="twitter:description" content="NodeJs基础学习笔记   一. 基础1. require 用于在当前模块中加载和使用别的模块，传入一个模块名，返回一个模块导出对象。模块名可使用相对路径（以./开头），或者是绝对路径（以/或C:之类的盘符开头）。另外，模块名中的.js扩展名可以省略。  2. exports 用于导出模块公有方法和属性。别的模块通过require函数使用当前模块时得到的就是当前模块的exports对象  3.">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg?2017/11/22">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:xaboy2005@qq.com" title="xaboy2005@qq.com" class="mail">xaboy2005@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">NodeJs学习笔记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">NodeJs学习笔记</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-22T05:27:32.000Z" itemprop="datePublished" class="page-time">
+  2017-11-22
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一-基础"><span class="post-toc-number">1.</span> <span class="post-toc-text">一. 基础</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-require"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1. require</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-exports"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2. exports</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-module"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3. module</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二-代码的组织和部署"><span class="post-toc-number">2.</span> <span class="post-toc-text">二. 代码的组织和部署</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-内置模块"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1. 内置模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-node-modules目录"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2. node_modules目录</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-NODE-PATH环境变量"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3. NODE_PATH环境变量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-包（package）"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">4. 包（package）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-NPM"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">5. NPM</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-nodejs-learn-node"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">NodeJs学习笔记</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-22 13:27:32" datetime="2017-11-22T05:27:32.000Z"  itemprop="datePublished">2017-11-22</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>NodeJs基础学习笔记</p>
+</blockquote>
+<hr>
+<h2 id="一-基础"><a href="#一-基础" class="headerlink" title="一. 基础"></a><strong>一. 基础</strong></h2><h3 id="1-require"><a href="#1-require" class="headerlink" title="1. require"></a>1. require</h3><blockquote>
+<p>用于在当前模块中加载和使用别的模块，传入一个模块名，返回一个模块导出对象。模块名可使用相对路径（以./开头），或者是绝对路径（以/或C:之类的盘符开头）。另外，模块名中的.js扩展名可以省略。</p>
+</blockquote>
+<h3 id="2-exports"><a href="#2-exports" class="headerlink" title="2. exports"></a>2. exports</h3><blockquote>
+<p>用于导出模块公有方法和属性。别的模块通过require函数使用当前模块时得到的就是当前模块的exports对象</p>
+</blockquote>
+<h3 id="3-module"><a href="#3-module" class="headerlink" title="3. module"></a>3. module</h3><blockquote>
+<p>module对象可以访问到当前模块的一些相关信息，但最多的用途是替换当前模块的导出对象。</p>
+</blockquote>
+<p><strong>!!一个模块中的JS代码仅在模块第一次被使用时执行一次，并在执行过程中初始化模块的导出对象。之后，缓存起来的导出对象被重复利用。</strong></p>
+<h2 id="二-代码的组织和部署"><a href="#二-代码的组织和部署" class="headerlink" title="二. 代码的组织和部署"></a><strong>二. 代码的组织和部署</strong></h2><h3 id="1-内置模块"><a href="#1-内置模块" class="headerlink" title="1. 内置模块"></a>1. 内置模块</h3><blockquote>
+<p>如果传递给require函数的是NodeJS内置模块名称，不做路径解析，直接返回内部模块的导出对象，例如require(‘fs’)。</p>
+</blockquote>
+<h3 id="2-node-modules目录"><a href="#2-node-modules目录" class="headerlink" title="2. node_modules目录"></a>2. node_modules目录</h3><blockquote>
+<p>NodeJS定义了一个特殊的node_modules目录用于存放模块。例如某个模块的绝对路径是/home/user/hello.js，在该模块中使用require(‘foo/bar’)方式加载模块时，则NodeJS依次尝试使用以下路径。</p>
+<p><em>/home/user/node_modules/foo/bar<br> /home/node_modules/foo/bar<br> /node_modules/foo/bar</em></p>
+</blockquote>
+<h3 id="3-NODE-PATH环境变量"><a href="#3-NODE-PATH环境变量" class="headerlink" title="3. NODE_PATH环境变量"></a>3. NODE_PATH环境变量</h3><blockquote>
+<p>与PATH环境变量类似，NodeJS允许通过NODE_PATH环境变量来指定额外的模块搜索路径。NODE_PATH环境变量中包含一到多个目录路径，路径之间在Linux下使用:分隔，在Windows下使用;分隔。例如定义了以下NODE_PATH环境变量：</p>
+<p><em>NODE_PATH=/home/user/lib:/home/lib</em></p>
+<p>当使用require(‘foo/bar’)的方式加载模块时，则NodeJS依次尝试以下路径。</p>
+<p><em>/home/user/lib/foo/bar<br> /home/lib/foo/bar</em></p>
+</blockquote>
+<h3 id="4-包（package）"><a href="#4-包（package）" class="headerlink" title="4. 包（package）"></a>4. 包（package）</h3><p> 我们已经知道了JS模块的基本单位是单个JS文件，但复杂些的模块往往由多个子模块组成。为了便于管理和使用，我们可以把由多个子模块组成的大模块称做包，并把所有子模块放在同一个目录里。</p>
+<p>在组成一个包的所有子模块中，需要有一个入口模块，入口模块的导出对象被作为包的导出对象。</p>
+<p>当模块的文件名是index.js，加载模块时可以使用模块所在目录的路径代替模块文件路径，因此接着上例，以下两条语句等价。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var cat = require(&apos;/home/user/lib/cat&apos;);</span><br><span class="line">var cat = require(&apos;/home/user/lib/cat/index&apos;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>如果想自定义入口模块的文件名和存放位置，就需要在包目录下包含一个package.json文件，并在其中指定入口模块的路径。上例中的cat模块可以重构如下。<br>其中package.json内容如下。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;cat&quot;,</span><br><span class="line">    &quot;main&quot;: &quot;./lib/main.js&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-NPM"><a href="#5-NPM" class="headerlink" title="5. NPM"></a>5. NPM</h3><p>NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，常见的使用场景有以下几种：</p>
+<ul>
+<li><p>允许用户从NPM服务器下载别人编写的三方包到本地使用。</p>
+</li>
+<li><p>允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。</p>
+</li>
+<li><p>允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。</p>
+</li>
+</ul>
+<p><code>npm install argv</code><br><code>npm install argv -g 全局安装</code></p>
+<blockquote>
+<p><strong>如果想要下载指定版本的话，可以在包名后边加上@<version></version></strong></p>
+</blockquote>
+<p><strong>版本号</strong></p>
+<p>使用NPM下载和发布代码时都会接触到版本号。NPM使用语义版本号来管理代码，这里简单介绍一下。</p>
+<p>如果使用到的三方包比较多，在终端下一个包一条命令地安装未免太人肉了。因此NPM对package.json的字段做了扩展，允许在其中申明三方包依赖。因此，上边例子中的package.json可以改写如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;node-echo&quot;,</span><br><span class="line">    &quot;main&quot;: &quot;./lib/echo.js&quot;,</span><br><span class="line">    &quot;dependencies&quot;: &#123;</span><br><span class="line">        &quot;argv&quot;: &quot;0.0.2&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样处理后，在工程目录下就可以使用npm install命令批量安装三方包了。更重要的是，当以后node-echo也上传到了NPM服务器，别人下载这个包时，NPM会根据包中申明的三方包依赖自动下载进一步依赖的三方包</p>
+<p>语义版本号分为<code>X.Y.Z</code>三位，分别代表主版本号、次版本号和补丁版本号。当代码变更时，版本号按以下原则更新。</p>
+<ul>
+<li><p>如果只是修复bug，需要更新Z位。</p>
+</li>
+<li><p>如果是新增了功能，但是向下兼容，需要更新Y位。</p>
+</li>
+<li><p>如果有大变动，向下不兼容，需要更新X位。</p>
+</li>
+</ul>
+<p>版本号有了这个保证后，在申明三方包依赖时，除了可依赖于一个固定版本号外，还可依赖于某个范围的版本号。例如”argv”: <strong>“0.0.x”表示依赖于0.0.x系列的最新版argv</strong>。NPM支持的所有版本号范围指定方式可以查看官方文档。</p>
+<p>除了本章介绍的部分外，NPM还提供了很多功能，package.json里也有很多其它有用的字段。除了可以在npmjs.org/doc/查看官方文档外，这里再介绍一些NPM常用命令。</p>
+<ul>
+<li><p>NPM提供了很多命令，例如install和publish，使用npm help可查看所有命令。</p>
+</li>
+<li><p>使用npm help <command>可查看某条命令的详细帮助，例如npm help install。</p>
+</li>
+<li><p>在package.json所在目录下使用npm install . -g可先在本地安装当前命令行程序，可用于发布前的本地测试。</p>
+</li>
+<li><p>使用npm update <package>可以把当前目录下node_modules子目录里边的对应模块更新至最新版本。</package></p>
+</li>
+<li><p>使用npm update <package> -g可以把全局安装的对应命令行程序更新至最新版。</package></p>
+</li>
+<li><p>使用npm cache clear可以清空NPM本地缓存，用于对付使用相同版本号发布新版本代码的人。</p>
+</li>
+<li><p>使用npm unpublish <package>@<version>可以撤销发布自己发布过的某个版本代码。</version></package></p>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-11-22T05:38:34.213Z" itemprop="dateUpdated">2017-11-22 13:38:34</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/11/22/nodejs-learn-node/" target="_blank" rel="external">http://yoursite.com/2017/11/22/nodejs-learn-node/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg?2017/11/22" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NodeJs/">NodeJs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/11/22/nodejs-learn-node/&title=《NodeJs学习笔记》 — Hexo&pic=http://yoursite.com/img/avatar.jpg?2017/11/22" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/11/22/nodejs-learn-node/&title=《NodeJs学习笔记》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/11/22/nodejs-learn-node/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《NodeJs学习笔记》 — Hexo&url=http://yoursite.com/2017/11/22/nodejs-learn-node/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/11/22/nodejs-learn-node/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/11/22/markdown-document/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Markdown 语法手册</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/11/22/php-curl-header/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">curl获得header头部</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>John Doe &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/11/22/nodejs-learn-node/&title=《NodeJs学习笔记》 — Hexo&pic=http://yoursite.com/img/avatar.jpg?2017/11/22" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/11/22/nodejs-learn-node/&title=《NodeJs学习笔记》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/11/22/nodejs-learn-node/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《NodeJs学习笔记》 — Hexo&url=http://yoursite.com/2017/11/22/nodejs-learn-node/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/11/22/nodejs-learn-node/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3awVLDMAxF0fz/T4cZtqHufVIKWLleddoQ+3ghZMnHgcf5PdLP13H99TrL9fvbhgwZMrZlnMtxXWJtoXyJZDt+eI8MGTIewOCvu3dZ5Pv1O2XIkCFj/Qxf3PrJdF4ZMmTI6ARKskSehsqQIUNG+uoa4MTjl87iMmTI2JDxucZA//O/6G/IkCHjTxlnOEgDslN0K65KhgwZoxnr9mQadnmS12k/vNwsGTJkDGXwacjFixqJX+l4udEyZMgYzeABtzNx/4oGSkBlyJAxmtG5+MXTuDTtK26EDBkyHsaoHWI7x9ePBFwZMmRszugEuFow5RcpgkOvDBkyRjPSQlhnYt6qTO9UyJAhYzaDT3DXpYr1cvlhVYYMGc9h3FVWqwVlvlwZMmTI4IUwkkSmIThtZBY7sTJkyNickQa4TirJAyu/2CFDhoznMNJyfC3hSxPHuDwnQ4aMcYzgiBi2LTm7c/TNT7oyZMjYj8GDWho6SeJIvikeZWXIkDGI0SnWpyW5AwxyZEVZrQwZMsYxOgWvlNGf8c0hVoYMGeMYPH/sNAPSkF2sGsqQIWMo4wwHb3neW4BD/zdkyJAxlMEHD6m1lmSaaMqQIeNpDBJk09SN/1Uapls9DRkyZGzOIEW0/pNpchk3MmXIkPF4Bnld7UoZCf1vgq8MGTJkNBqc6+c7LYFWwJUhQ8aGjLRYX7zCFV7C4A0DGTJkzGakB0iC4Y1JslnpNsmQIWMQ4wtv/56c4/dRTgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -22,8 +22,9 @@
     <meta name="keywords" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/archives/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:updated_time" content="2017-11-22T06:03:37.628Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
     
@@ -58,14 +59,14 @@
     <div class="scroll-wrap flex-col">
       <ul class="nav">
         
-            <li class="waves-block waves-effect active">
+            <li class="waves-block waves-effect">
               <a href="/"  >
                 <i class="icon icon-lg icon-home"></i>
                 主页
               </a>
             </li>
         
-            <li class="waves-block waves-effect">
+            <li class="waves-block waves-effect active">
               <a href="/archives"  >
                 <i class="icon icon-lg icon-archives"></i>
                 Archives
@@ -118,7 +119,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Hexo</div>
+        <div class="flex-col header-title ellipsis"></div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -137,13 +138,11 @@
         
     </div>
 </header>
-<header class="content-header index-header">
+<header class="content-header page-header">
 
     <div class="container fade-scale">
-        <h1 class="title">Hexo</h1>
+        <h1 class="title"></h1>
         <h5 class="subtitle">
-            
-                
             
         </h5>
     </div>
@@ -153,207 +152,110 @@
 
 </header>
 
+
 <div class="container body-wrap">
-
-    <ul class="post-list">
-    
-        <li class="post-list-item fade">
-            <article id="post-markdown-document"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-11-22 13:33:44" datetime="2017-11-22T05:33:44.000Z"  itemprop="datePublished">2017-11-22</time>
+    <article class="page-article fade" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            
+        </div>
 
         
+        <div class="card page-about-me flex-row">
+            <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/avatar.jpg?2017/11/22"></a>
+            <div class="content flex-col">
+                <p><strong>John Doe</strong></p>
+                <p><em></em></p>
+                <p>用户页面中作者相关的描述性文字，如不需要设为 false</p>
+            </div>
 
-
-    </div>
-
+            
+<div class="page-share-wrap">
     
 
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/22/markdown-document/">Markdown 语法手册</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        Markdown 基础语法手册
-1. 斜体和粗体使用  和 * 表示斜体和粗体。
-示例：
-这是 斜体，这是 粗体。
-2. 分级标题使用 === 表示一级标题，使用 — 表示二级标题。
-示例：
-1234567这是一个一级标题============================这是一个二级标题--------------------------------------------------...
-    
-
-        <a href="/2017/11/22/markdown-document/" class="post-more waves-effect waves-button">
-            Continue reading...
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/archives/&title=Hexo&pic=http://yoursite.com/img/avatar.jpg?2017/11/22" data-title="微博">
+          <i class="icon icon-weibo"></i>
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/document/">document</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-nodejs-learn-node"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-11-22 13:27:32" datetime="2017-11-22T05:27:32.000Z"  itemprop="datePublished">2017-11-22</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/22/nodejs-learn-node/">NodeJs学习笔记</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        
-NodeJs基础学习笔记
-
-
-一. 基础1. require
-用于在当前模块中加载和使用别的模块，传入一个模块名，返回一个模块导出对象。模块名可使用相对路径（以./开头），或者是绝对路径（以/或C:之类的盘符开头）。另外，模块名中的.js扩展名可以省略。
-
-2. exports
-用于导出模块公有方法和属性。别的模块通过require函数使用当前模块时得到的就是当前模块的exports对象
-...
-    
-
-        <a href="/2017/11/22/nodejs-learn-node/" class="post-more waves-effect waves-button">
-            Continue reading...
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NodeJs/">NodeJs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-php-curl-header"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-11-22 13:04:43" datetime="2017-11-22T05:04:43.000Z"  itemprop="datePublished">2017-11-22</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/22/php-curl-header/">curl获得header头部</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        
-PHP的curl功能十分强大，简单点说，就是一个PHP实现浏览器的基础。最常用的可能就是抓取远程数据或者向远程POST数据。但是在这个过程中，调试时，可能会有查看header的必要。
-
-
-1234567891011121314151617181920212223242526272829function get_head($sUrl)    &#123;        $oCurl = cu...
-    
-
-        <a href="/2017/11/22/php-curl-header/" class="post-more waves-effect waves-button">
-            Continue reading...
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/archives/&title=Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/curl/">curl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-hello-world"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-11-21 14:05:00" datetime="2017-11-21T06:05:00.553Z"  itemprop="datePublished">2017-11-21</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/21/hello-world/">Hello World</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Qu...
-    
-
-        <a href="/2017/11/21/hello-world/" class="post-more waves-effect waves-button">
-            Continue reading...
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/archives/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
         </a>
-    </div>
-    
-</article>
-
-        </li>
-    
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Hexo&url=http://yoursite.com/archives/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/archives/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
     </ul>
+ </div>
 
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+        
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        
+
+    </article>
     
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
 
 </div>
 
@@ -394,7 +296,7 @@ Qu...
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/&title=Hexo&pic=http://yoursite.com/img/avatar.jpg?2017/11/22" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/archives/&title=Hexo&pic=http://yoursite.com/img/avatar.jpg?2017/11/22" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -404,22 +306,22 @@ Qu...
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/&title=Hexo&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/archives/&title=Hexo&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/archives/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Hexo&url=http://yoursite.com/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Hexo&url=http://yoursite.com/archives/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/archives/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -430,7 +332,7 @@ Qu...
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAAAAAAZai4+AAABW0lEQVR42u3aQQ7DIAxE0dz/0qnUVaUUMjNOF7W/VxVKw8sCMIbjkON8x6r9M/T/PhCwYDVindu4PqO0XNv1vmDBmszaD2y9S/33jQEWLFjC6/QFGBYsWL9muV3CggVrz1KSZmWy0JPvx3J5WLBasCrLbSVRfri+BQvW37JOM9xlOwtYsKax9CLRfhRXtrhGBgELVlPWSpptSvVk+qYvWLBgRUWiynWEL++BBQuW0KUy1BXWsgUWrGEsN2nOQNJRij67wILVlKUUZCvLuVJsks5gYcFqyqqUbt0jE2PqgQVrMMu9fJAdcCqTCCxY01jZQUi2uS2d/MCC1ZpVuXCQlWul1BwWrGGsLOXdd6kv5PVEHBasTqxsUtDTZXcqgQVrMisr/WTbVOkZWLBgyYPcPcMxMgVYsGA9tL1Uik3Lz4AFayQrS5rd1NmYE2DBGsbKrgtkxFI1CxasnqwXXY7FbVPN83MAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABuElEQVR42u3aQXKDMAwFUO5/6fQAGZMvCbssHqtOA/KDhUa2dF3x9Sle38+uYl47Llxc3DE3WXhFySOs7qxGwMXFPcm9TzQ5dPVs8p8o2eHi4r6ee5+GVvdUPwcuLu77udXS5/4lcXFx38xNNj/3KazK2r5Xw8XFHXDzU8p9f28538XFxW1xew2SPOVVD0Z/rI6Li3uEmyeU6pFHXsTk6+Li4p7nzlPMaLsSfxpcXNyT3N7gVO+VJjNXuLi4Z7hJmVJNYUmC60XDxcU9w81DJ+MUvY1QvgouLu5ubg/Ra8H2hjZ+1GK4uLgbuNUUMzn4mHyIKO/i4uI+xM2LjMmgRrXmWj6Fi4t7kNsbwEqONfMIER0XF/cIt9camaAno6K4uLgnuc3eSzHB9cY1lns1XFzcI9xJwyOPU23rRk1WXFzcbdwEVE1hvUKnUIXh4uJu4H6KV2/hx9ozuLi4R7i9FulToasDHLi4uCe5veSV3JkUPeVfcXFxD3KriaY3ujEZ5sDFxX0z99ltTHn8AhcX98Xc3a8UdX5wcXE3c3ujEr0RrqQAwsXF/V/u/HDzqYZrb3gLFxf3Ue4fuO+Qn+8NT6oAAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 
@@ -438,7 +340,7 @@ Qu...
 
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
 </script>

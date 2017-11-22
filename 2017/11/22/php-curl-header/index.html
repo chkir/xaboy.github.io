@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>curl获得header头部 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="php,curl">
+    <meta name="description" content="PHP的curl功能十分强大，简单点说，就是一个PHP实现浏览器的基础。最常用的可能就是抓取远程数据或者向远程POST数据。但是在这个过程中，调试时，可能会有查看header的必要。   1234567891011121314151617181920212223242526272829function get_head">
+<meta name="keywords" content="php,curl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="curl获得header头部">
+<meta property="og:url" content="http://yoursite.com/2017/11/22/php-curl-header/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="PHP的curl功能十分强大，简单点说，就是一个PHP实现浏览器的基础。最常用的可能就是抓取远程数据或者向远程POST数据。但是在这个过程中，调试时，可能会有查看header的必要。   1234567891011121314151617181920212223242526272829function get_head($sUrl)    &amp;#123;        $oCurl = curl_">
+<meta property="og:updated_time" content="2017-11-22T05:38:30.480Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="curl获得header头部">
+<meta name="twitter:description" content="PHP的curl功能十分强大，简单点说，就是一个PHP实现浏览器的基础。最常用的可能就是抓取远程数据或者向远程POST数据。但是在这个过程中，调试时，可能会有查看header的必要。   1234567891011121314151617181920212223242526272829function get_head($sUrl)    &amp;#123;        $oCurl = curl_">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg?2017/11/22">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:xaboy2005@qq.com" title="xaboy2005@qq.com" class="mail">xaboy2005@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">curl获得header头部</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">curl获得header头部</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-22T05:04:43.000Z" itemprop="datePublished" class="page-time">
+  2017-11-22
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-php-curl-header"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">curl获得header头部</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-22 13:04:43" datetime="2017-11-22T05:04:43.000Z"  itemprop="datePublished">2017-11-22</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>PHP的curl功能十分强大，简单点说，就是一个PHP实现浏览器的基础。<br>最常用的可能就是抓取远程数据或者向远程POST数据。但是在这个过程中，调试时，可能会有查看header的必要。</p>
+</blockquote>
+<hr>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_head</span><span class="params">($sUrl)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $oCurl = curl_init();</span><br><span class="line">        <span class="comment">// 设置请求头, 有时候需要,有时候不用,看请求网址是否有对应的要求</span></span><br><span class="line">        $header[] = <span class="string">"Content-type: application/x-www-form-urlencoded"</span>;</span><br><span class="line">        $user_agent = <span class="string">"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.146 Safari/537.36"</span>;</span><br><span class="line"></span><br><span class="line">        curl_setopt($oCurl, CURLOPT_URL, $sUrl);</span><br><span class="line">        curl_setopt($oCurl, CURLOPT_HTTPHEADER, $header);</span><br><span class="line">        <span class="comment">// 返回 response_header, 该选项非常重要,如果不为 true, 只会获得响应的正文</span></span><br><span class="line">        curl_setopt($oCurl, CURLOPT_HEADER, <span class="keyword">true</span>);</span><br><span class="line">        <span class="comment">// 是否不需要响应的正文,为了节省带宽及时间,在只需要响应头的情况下可以不要正文</span></span><br><span class="line">        curl_setopt($oCurl, CURLOPT_NOBODY, <span class="keyword">true</span>);</span><br><span class="line">        <span class="comment">// 使用上面定义的 ua</span></span><br><span class="line">        curl_setopt($oCurl, CURLOPT_USERAGENT, $user_agent);</span><br><span class="line">        curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line">        <span class="comment">// 不用 POST 方式请求, 意思就是通过 GET 请求</span></span><br><span class="line">        curl_setopt($oCurl, CURLOPT_POST, <span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line">        $sContent = curl_exec($oCurl);</span><br><span class="line">        <span class="comment">// 获得响应结果里的：头大小</span></span><br><span class="line">        $headerSize = curl_getinfo($oCurl, CURLINFO_HEADER_SIZE);</span><br><span class="line">        <span class="comment">// 根据头大小去获取头信息内容</span></span><br><span class="line">        $header = substr($sContent, <span class="number">0</span>, $headerSize);</span><br><span class="line"></span><br><span class="line">        curl_close($oCurl);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> $header;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>如上面解析,我们可以成功获得到头信息:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 302 Found</span><br><span class="line">Date: Fri, 27 Jun 2014 02:47:35 GMT</span><br><span class="line">Server: Apache</span><br><span class="line">Location: http://www.edeng.cn/s/chuna/</span><br><span class="line">Cache-Control: max-age=86400</span><br><span class="line">Expires: Sat, 28 Jun 2014 02:47:35 GMT</span><br><span class="line">Connection: Keep-Alive</span><br><span class="line">Content-Type: text/html; charset=iso-8859-1</span><br></pre></td></tr></table></figure></p>
+<p>这时候，如果我们想获得 Location  项的内容，可以先把上面头正文件按回车换行切割成数组，然后再遍历匹配，如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$responseHead = post_head($baiduUrl);</span><br><span class="line">$headArr = explode(<span class="string">"\r\n"</span>, $responseHead);</span><br><span class="line"><span class="keyword">foreach</span> ($headArr <span class="keyword">as</span> $loop) &#123;</span><br><span class="line">    <span class="keyword">if</span> (strpos($loop, <span class="string">"Location"</span>) !== <span class="keyword">false</span>) &#123;</span><br><span class="line">        $edengUrl = trim(substr($loop, <span class="number">10</span>));</span><br><span class="line">        print_r($edengUrl);</span><br><span class="line">        <span class="comment">// 输出: http://lotkk.com</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-11-22T05:38:30.480Z" itemprop="dateUpdated">2017-11-22 13:38:30</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/11/22/php-curl-header/" target="_blank" rel="external">http://yoursite.com/2017/11/22/php-curl-header/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg?2017/11/22" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/curl/">curl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/11/22/php-curl-header/&title=《curl获得header头部》 — Hexo&pic=http://yoursite.com/img/avatar.jpg?2017/11/22" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/11/22/php-curl-header/&title=《curl获得header头部》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/11/22/php-curl-header/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《curl获得header头部》 — Hexo&url=http://yoursite.com/2017/11/22/php-curl-header/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/11/22/php-curl-header/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/11/22/nodejs-learn-node/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">NodeJs学习笔记</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/11/21/hello-world/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Hello World</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>John Doe &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/11/22/php-curl-header/&title=《curl获得header头部》 — Hexo&pic=http://yoursite.com/img/avatar.jpg?2017/11/22" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/11/22/php-curl-header/&title=《curl获得header头部》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/11/22/php-curl-header/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《curl获得header头部》 — Hexo&url=http://yoursite.com/2017/11/22/php-curl-header/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/11/22/php-curl-header/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3aQXICMQwEwPz/05uqXGHNSIJUYrdPVCDGvYfBtvT1FY/rZzy+Xr973Yz1PI9/f9vAwMD4t4xrOe4+c7eU9efX+OR7b+fEwMA4gJF/TbLcdWgmAZ2vDQMDAyPfGibxmg8MDAyMOaP6bjW+MTAwMHqH2OpXJuDehR0GBsZpjElh4NOvf6m+gYGB8YcZvYNlLxbzxZVXhYGBsTVjcrnfC8rkofRmwMDAOIGRXI1Vy42Ta7hyAxkGBsamjF6TRK857F0B/eQ1BgbGAYzq0bTaKJZc5V+DgYGBsTcjmejF0TFog5jMnDxoDAyMvRm9For8+ixZYrXl4vYQi4GBsSljXgDIy5Z5SSD/rcDAwDiBkR8v58fUXshGV34YGBgHMPItXbUAWYVVIxsDA+MExrwAMNk4Vv/3xY8BBgbGpox8U5i3WUyuzKrXfxgYGOcw8g1ZD1Y9ElfbLzAwME5glCsJrUVMQnz9IDAwMPZmlKOtdUruFQPKxQMMDIxNGflVfl7ITMI6Lx4U6hsYGBjHMPIITi7FkhJmtR3tdoeLgYGxKSOfohrB1TnnbRkYGBi7Mq7iSNovJiXJ3lUdBgbG3oz5Fi2J10lhIC9dYGBg7M3ohWweeeuArj6mZgkTAwNjC0YSstXtXfUx5dH/BImBgYHxgTjuBfFtxmJgYGC0IrLaEDZpvMDAwDiBkUfq5IK+uq3MV4iBgbE3Y1IYiI6Xg9Fr6cDAwNiI8Q0dIOtBOKqU7AAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
