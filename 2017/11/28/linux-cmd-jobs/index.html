@@ -76,14 +76,14 @@
 <meta name="description" content="我们知道，在 Windows 上面，我们要么让一个程序作为服务在后台一直运行，要么停止这个服务。而不能让程序在前台后台之间切换。而 Linux 提供了 fg 和bg 命令，让你轻松调度正在运行的任务。">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux命令后台运行">
+<meta property="og:title" content="Centos linux后台运行程序命令">
 <meta property="og:url" content="http://lotkk.com/2017/11/28/linux-cmd-jobs/index.html">
 <meta property="og:site_name" content="Lotkk">
 <meta property="og:description" content="我们知道，在 Windows 上面，我们要么让一个程序作为服务在后台一直运行，要么停止这个服务。而不能让程序在前台后台之间切换。而 Linux 提供了 fg 和bg 命令，让你轻松调度正在运行的任务。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-28T06:14:10.965Z">
+<meta property="og:updated_time" content="2017-11-30T06:37:20.521Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux命令后台运行">
+<meta name="twitter:title" content="Centos linux后台运行程序命令">
 <meta name="twitter:description" content="我们知道，在 Windows 上面，我们要么让一个程序作为服务在后台一直运行，要么停止这个服务。而不能让程序在前台后台之间切换。而 Linux 提供了 fg 和bg 命令，让你轻松调度正在运行的任务。">
 
 
@@ -120,7 +120,7 @@
 
 
 
-  <title>linux命令后台运行 | Lotkk</title>
+  <title>Centos linux后台运行程序命令 | Lotkk</title>
   
 
 
@@ -302,7 +302,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">linux命令后台运行</h2>
+          <h2 class="post-title" itemprop="name headline">Centos linux后台运行程序命令</h2>
         
 
         <div class="post-meta">
@@ -378,10 +378,7 @@
       
 
       
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
-<p>我们知道，在 Windows 上面，我们要么让一个程序作为服务在后台一直运行，要么停止这个服务。而不能让程序在前台后台之间切换。而 Linux 提供了 fg 和bg 命令，让你轻松调度正在运行的任务。</p>
-</blockquote>
-<p>假设你发现前台运行的一个程序需要很长的时间，但是需要干其他的事情，你就可以用 Ctrl-Z ，挂起这个程序，然后可以看到系统提示：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1]+ Stopped /root/bin/rsync.sh</span><br></pre></td></tr></table></figure></p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>假设你发现前台运行的一个程序需要很长的时间，但是需要干其他的事情，你就可以用 Ctrl-Z ，挂起这个程序，然后可以看到系统提示：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1]+ Stopped /root/bin/rsync.sh</span><br></pre></td></tr></table></figure></p>
 <p>然后我们可以把程序调度到后台执行：（bg 后面的数字为作业号）</p>
 <h3 id="bg-1"><a href="#bg-1" class="headerlink" title="bg 1"></a>bg 1</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1]+ /root/bin/rsync.sh &amp;</span><br></pre></td></tr></table></figure>
 <p>用 jobs 命令查看正在运行的任务：</p>
@@ -449,8 +446,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/28/wdcp-cmd/" rel="next" title="WDCP控制面板的常用linux命令集">
-                <i class="fa fa-chevron-left"></i> WDCP控制面板的常用linux命令集
+              <a href="/2017/11/28/wdcp-cmd/" rel="next" title="WDCP常用linux命令集">
+                <i class="fa fa-chevron-left"></i> WDCP常用linux命令集
               </a>
             
           </div>
@@ -459,8 +456,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/29/nodejs-install/" rel="prev" title="安装配置Nodejs环境">
-                安装配置Nodejs环境 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/29/nodejs-install/" rel="prev" title="Centos linux搭建Nodejs环境">
+                Centos linux搭建Nodejs环境 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -542,7 +539,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -564,7 +561,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
