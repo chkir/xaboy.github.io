@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<meta name="google-site-verification" content="AY9lh-BBZYP3PwmQPW-hYj8SeGDrBly_RIdSDUO5hx4" />
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=5.1.3">
+
+
+
+
+
+
+  <meta name="keywords" content="linux,svn," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Subversion是一个自由，开源的版本控制系统。Subversion将文件存放在中心版本库里。这个版本库很像一个普通的文件服务器，不同的是，它可以记录每一次文件和目录的修改情况。这样就可以籍此将数据恢复到以前的版本，并可以查看数据的更改细节。">
+<meta name="keywords" content="linux,svn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Centos Linux下搭建SVN服务器">
+<meta property="og:url" content="http://lotkk.com/2017/11/29/svn-install/index.html">
+<meta property="og:site_name" content="Lotkk">
+<meta property="og:description" content="Subversion是一个自由，开源的版本控制系统。Subversion将文件存放在中心版本库里。这个版本库很像一个普通的文件服务器，不同的是，它可以记录每一次文件和目录的修改情况。这样就可以籍此将数据恢复到以前的版本，并可以查看数据的更改细节。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-30T06:36:07.203Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Centos Linux下搭建SVN服务器">
+<meta name="twitter:description" content="Subversion是一个自由，开源的版本控制系统。Subversion将文件存放在中心版本库里。这个版本库很像一个普通的文件服务器，不同的是，它可以记录每一次文件和目录的修改情况。这样就可以籍此将数据恢复到以前的版本，并可以查看数据的更改细节。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'FY1AJH8BAF',
+      apiKey: 'dbcbb2f29202c62018f1283a55a08a51',
+      indexName: 'lotkk',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lotkk.com/2017/11/29/svn-install/"/>
+
+
+
+
+
+  <title>Centos Linux下搭建SVN服务器 | Lotkk</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?795be283c09dace64a3e087de04e9e3f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lotkk</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lotkk.com/2017/11/29/svn-install/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xaboy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lotkk">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Centos Linux下搭建SVN服务器</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-29T12:40:22+08:00">
+                2017-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/记录/" itemprop="url" rel="index">
+                    <span itemprop="name">记录</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  Subversion是一个自由，开源的版本控制系统。Subversion将文件存放在中心版本库里。这个版本库很像一个普通的文件服务器，不同的是，它可以记录每一次文件和目录的修改情况。这样就可以籍此将数据恢复到以前的版本，并可以查看数据的更改细节。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Centos下搭建SVN服务器"><a href="#Centos下搭建SVN服务器" class="headerlink" title="Centos下搭建SVN服务器"></a>Centos下搭建SVN服务器</h2><h4 id="安装SVN"><a href="#安装SVN" class="headerlink" title="安装SVN"></a>安装SVN</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install subversion</span><br></pre></td></tr></table></figure>
+<h4 id="查看SVN的安装位置"><a href="#查看SVN的安装位置" class="headerlink" title="查看SVN的安装位置"></a>查看SVN的安装位置</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_94_152_centos ~]# rpm -ql subversion</span><br><span class="line">/usr/bin/svn</span><br><span class="line">/usr/bin/svnadmin</span><br><span class="line">/usr/bin/svndumpfilter</span><br><span class="line">/usr/bin/svnlook</span><br><span class="line">/usr/bin/svnserve</span><br><span class="line">/usr/bin/svnsync</span><br><span class="line">/usr/bin/svnversion</span><br></pre></td></tr></table></figure>
+<h4 id="查看SVN版本"><a href="#查看SVN版本" class="headerlink" title="查看SVN版本"></a>查看SVN版本</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_94_152_centos ~]# /usr/bin/svnversion --version</span><br><span class="line">svnversion, version 1.6.11 (r934486)</span><br><span class="line">   compiled Aug 17 2015, 08:37:43</span><br><span class="line"></span><br><span class="line">Copyright (C) 2000-2009 CollabNet.</span><br><span class="line">Subversion is open source software, see http://subversion.tigris.org/</span><br><span class="line">This product includes software developed by CollabNet (http://www.Collab.Net/).</span><br></pre></td></tr></table></figure>
+<h4 id="创建svn版本库目录"><a href="#创建svn版本库目录" class="headerlink" title="创建svn版本库目录"></a>创建svn版本库目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /www/svn/lotkk</span><br></pre></td></tr></table></figure>
+<h4 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svnadmin create /www/svn/lotkk</span><br></pre></td></tr></table></figure>
+<p>执行了这个命令之后会在/www/svn/lotkk目录下生成如下这些文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_94_152_centos lotkk]# ls</span><br><span class="line">conf  db  format  hooks  locks  README.txt</span><br></pre></td></tr></table></figure>
+<h4 id="初始化版本仓库中的目录"><a href="#初始化版本仓库中的目录" class="headerlink" title="初始化版本仓库中的目录"></a>初始化版本仓库中的目录</h4><p><code>mkdir project project/server project/client project/test (建立临时目录)</code><br><code>svn import project/ file:///www/svn/lotkk -m “初始化SVN目录”</code><br><code>rm -rf project (删除临时建立的目录)</code></p>
+<h4 id="配置版本库"><a href="#配置版本库" class="headerlink" title="配置版本库"></a>配置版本库</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_94_152_centos lotkk]# cd /www/svn/lotkk/conf</span><br></pre></td></tr></table></figure>
+<p>authz文件是权限控制文件<br>passwd是帐号密码文件<br>svnserve.conf SVN服务配置文件</p>
+<p><strong>添加用户</strong></p>
+<p>vim passwd  在[users]块中添加用户和密码，格式：帐号=密码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>## This file is an example password file for svnserve.</span><br><span class="line"><span class="meta">#</span>## Its format is similar to that of svnserve.conf. As shown in the</span><br><span class="line"><span class="meta">#</span>## example below it contains one section labelled [users].</span><br><span class="line"><span class="meta">#</span>## The name and password for each user follow, one account per line.</span><br><span class="line"></span><br><span class="line">[users]</span><br><span class="line"><span class="meta">#</span> harry = harryssecret</span><br><span class="line"><span class="meta">#</span> sally = sallyssecret</span><br><span class="line">pm = pm_pw</span><br><span class="line">server_group = server_pw</span><br><span class="line">client_group = client_pw</span><br><span class="line">test_group = test_pw</span><br></pre></td></tr></table></figure>
+<p><strong>添加权限</strong></p>
+<p>vim authz 在末尾添加如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[groups]</span><br><span class="line">project_p = pm</span><br><span class="line">project_s = server1,server2,server3</span><br><span class="line">project_c = client1,client2,client3</span><br><span class="line">project_t = test1,test1,test1</span><br><span class="line">[project:/]</span><br><span class="line">@project_p = rw</span><br><span class="line">* =</span><br><span class="line">[project:/server]</span><br><span class="line">@project_p = rw</span><br><span class="line">@project_s = rw</span><br><span class="line">* =</span><br><span class="line">[project:/client]</span><br><span class="line">@project_p = rw</span><br><span class="line">@project_c = rw</span><br><span class="line">* =</span><br><span class="line">[project:/doc]</span><br><span class="line">@project_p = rw</span><br><span class="line">@project_s = r</span><br><span class="line">@project_c = r</span><br><span class="line">@project_t = r</span><br><span class="line">* =</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>  以上信息表示，只有project_p用户组有根目录的读写权。r表示对该目录有读权限，w表示对该目录有写权限，rw表示对该目录有读写权限。最后一行的* =表示，除了上面设置了权限的用户组之外，其他任何人都被禁止访问本目录。这个很重要，一定要加上！</p>
+</blockquote>
+<p><strong>修改svnserve.conf文件</strong></p>
+<p>vim svnserve.conf 打开下面的几个注释：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">anon-access = none #非授权用户无法访问</span><br><span class="line">auth-access = write #授权用户可写</span><br><span class="line">password-db = /www/svn/lotkk/conf/passwd #使用哪个文件作为账号文件</span><br><span class="line">authz-db = /www/svn/lotkk/conf/passwd #使用哪个文件作为权限文件</span><br></pre></td></tr></table></figure>
+<h4 id="启动SVN"><a href="#启动SVN" class="headerlink" title="启动SVN"></a>启动SVN</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">svnserve -d -r /www/svn/lotkk    #注意目录，不包含svn1</span><br><span class="line">ps aux | grep svnserve            #查看服务是否启动</span><br></pre></td></tr></table></figure>
+<h4 id="关闭SVN"><a href="#关闭SVN" class="headerlink" title="关闭SVN"></a>关闭SVN</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall svnserve</span><br></pre></td></tr></table></figure>
+<h4 id="删除版本库"><a href="#删除版本库" class="headerlink" title="删除版本库"></a>删除版本库</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf lotkk/</span><br></pre></td></tr></table></figure>
+<h4 id="测试版本库"><a href="#测试版本库" class="headerlink" title="测试版本库"></a>测试版本库</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">svn co svn://lotkk.com/project</span><br><span class="line">Authentication realm: &lt;svn://lotkk.com:3690&gt; 92731041-2dae-4c23-97fd-9e1ed7f0d18d</span><br><span class="line">Password for 'root':</span><br><span class="line">Authentication realm: &lt;svn://lotkk.com:3690&gt; 92731041-2dae-4c23-97fd-9e1ed7f0d18d</span><br><span class="line">Username: server_group</span><br><span class="line">Password for 'server_group':</span><br><span class="line">svn: Authorization failed ( server_group没用根目录的访问权 )</span><br><span class="line"><span class="meta">#</span><span class="bash"> svn co svn://lotkk.com/project</span></span><br><span class="line">Authentication realm: &lt;svn://lotkk.com:3690&gt; 92731041-2dae-4c23-97fd-9e1ed7f0d18d</span><br><span class="line">Password for ‘root’:</span><br><span class="line">Authentication realm: &lt;svn://lotkk.com:3690&gt; 92731041-2dae-4c23-97fd-9e1ed7f0d18d</span><br><span class="line">Username: pm</span><br><span class="line">Password for ‘pm’:</span><br><span class="line">A    project/test</span><br><span class="line">A    project/server</span><br><span class="line">A    project/client</span><br><span class="line">Checked out revision 1.  ( 测试提取成功 )</span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> project/server</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> vim main.c</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> svn add main.c</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> svn commit main.c -m “测试一下我的C程序,看什么看,不行啊??”</span></span><br><span class="line">Adding         main.c</span><br><span class="line">Transmitting file data .</span><br><span class="line">Committed revision 2.  ( 测试提交成功 )</span><br></pre></td></tr></table></figure>
+<h4 id="同个SVN库下根据不同的权限访问不同的目录"><a href="#同个SVN库下根据不同的权限访问不同的目录" class="headerlink" title="同个SVN库下根据不同的权限访问不同的目录"></a>同个SVN库下根据不同的权限访问不同的目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[groups]</span><br><span class="line">group1 = user1,user2</span><br><span class="line">group2 = user3,user4</span><br><span class="line"></span><br><span class="line">[svn1:/]</span><br><span class="line">test = rw</span><br><span class="line">other = rw</span><br><span class="line">anyone = rw</span><br><span class="line">@group1 = rw</span><br><span class="line">@group2 = rw</span><br><span class="line"></span><br><span class="line">[svn1:/chanpin]</span><br><span class="line">other = rw</span><br><span class="line">@group1 = rw</span><br><span class="line">* =</span><br><span class="line"></span><br><span class="line">[svn1:/yanfa]</span><br><span class="line">anyone = rw</span><br><span class="line">@group2 = rw</span><br><span class="line">* =</span><br></pre></td></tr></table></figure>
+<h4 id="打开端口"><a href="#打开端口" class="headerlink" title="打开端口"></a>打开端口</h4><p>这一步很重要，如果你都配置完了却发现连接不上，那一定是端口没有打开，默认端口是3690.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -i eth0 -p tcp --dport 3690 -j ACCEPT #开放端口 </span><br><span class="line">service iptables save #保存 iptables 规则（如不能保存请使用其他方法保存）</span><br></pre></td></tr></table></figure>
+<h4 id="自动部署"><a href="#自动部署" class="headerlink" title="自动部署"></a>自动部署</h4><p>每一次commit提交代码之后都会执行钩子post-commit,根据这个原理可以修改post-commit，让服务器上的web目录在每次有人commit之后自动update。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp post-commit.tmpl post-commit </span><br><span class="line">vi post-commit</span><br></pre></td></tr></table></figure>
+<p>内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">export LANG=zh_CN.GBK   </span><br><span class="line">#设定语言，根据系统语言设置，如果是UTF-8 就设置为 LANG=zh_CN.UTF-8</span><br><span class="line">echo &quot;hello world&quot; &gt;&gt; /tmp/svn.log #用来测试钩子是否有执行，调试使用，如果正常就不需要这行了 </span><br><span class="line">SVN_PATH=/usr/bin/svn</span><br><span class="line">WEB_PATH=/home/wwwroot/testsvn</span><br><span class="line"></span><br><span class="line">$SVN_PATH update svn://127.0.0.1/project $WEB_PATH  --username 用户名 --password 密码 --no-auth-cache</span><br></pre></td></tr></table></figure>
+<p><strong>给post-commit 执行权限：chmod -R 755 post-commit</strong></p>
+<p>钩子文件里的其他都可以不要了,可以都把他们注释掉。能这么使用的前提是你的yourWebDir已经checkout过了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /data/wwwroot/yourWebDir </span><br><span class="line">svn checkout svn://你的服务器ip </span><br><span class="line">... #根据提示完成checkout</span><br></pre></td></tr></table></figure>
+<p>至此全部搞定，每一次commit到服务器会自动更新网站内容了。 </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/svn/" rel="tag"># svn</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/29/nodejs-install/" rel="next" title="Centos linux搭建Nodejs环境">
+                <i class="fa fa-chevron-left"></i> Centos linux搭建Nodejs环境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/30/jq-validation-learn/" rel="prev" title="jquery-validation 表单验证使用方法">
+                jquery-validation 表单验证使用方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="xaboy" />
+            
+              <p class="site-author-name" itemprop="name">xaboy</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Centos下搭建SVN服务器"><span class="nav-number">1.</span> <span class="nav-text">Centos下搭建SVN服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装SVN"><span class="nav-number">1.0.1.</span> <span class="nav-text">安装SVN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看SVN的安装位置"><span class="nav-number">1.0.2.</span> <span class="nav-text">查看SVN的安装位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看SVN版本"><span class="nav-number">1.0.3.</span> <span class="nav-text">查看SVN版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建svn版本库目录"><span class="nav-number">1.0.4.</span> <span class="nav-text">创建svn版本库目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建版本库"><span class="nav-number">1.0.5.</span> <span class="nav-text">创建版本库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化版本仓库中的目录"><span class="nav-number">1.0.6.</span> <span class="nav-text">初始化版本仓库中的目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置版本库"><span class="nav-number">1.0.7.</span> <span class="nav-text">配置版本库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动SVN"><span class="nav-number">1.0.8.</span> <span class="nav-text">启动SVN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关闭SVN"><span class="nav-number">1.0.9.</span> <span class="nav-text">关闭SVN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除版本库"><span class="nav-number">1.0.10.</span> <span class="nav-text">删除版本库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试版本库"><span class="nav-number">1.0.11.</span> <span class="nav-text">测试版本库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同个SVN库下根据不同的权限访问不同的目录"><span class="nav-number">1.0.12.</span> <span class="nav-text">同个SVN库下根据不同的权限访问不同的目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打开端口"><span class="nav-number">1.0.13.</span> <span class="nav-text">打开端口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自动部署"><span class="nav-number">1.0.14.</span> <span class="nav-text">自动部署</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xaboy</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "https://pingjs.qq.com/h5/stats.js?v2.0.4";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "64213317");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=64213317";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
